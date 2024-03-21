@@ -53,6 +53,15 @@ section{
   padding-bottom:10vh;
 }
 
+.custom-calendar-container {
+  width: 100%;
+}
+
+.custom-calendar {
+  width: 100%; 
+  height: 90%;
+}
+
 .custom-calendar-container .react-calendar {
   background-color: #fff; 
   border: 1px solid #99181e;
@@ -85,9 +94,11 @@ section{
 }
 
 .custom-calendar-container .react-calendar__tile--active {
-  background-color: #99181e;
+  background-color: #99181e !important;
+  border-radius: 5px;
+  width: 90px;
 }
 
 .custom-calendar-container .react-calendar__tile--active:hover {
-  background-color: #99181e;
+  background-color: #99181e !important;
 }

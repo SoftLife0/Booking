@@ -18,13 +18,28 @@ function Booking() {
     <section>
         <div className='container'>
             <div className='row'>
-                
-
-                <div className='col-md-12 custom-calendar-container'>
-                    <Calendar onChange={onChange} value={date} className="custom-calendar"/>
-                    {console.log(date)}
-                    {date.toDateString()}
+                <div>
+                    <h2 style={{fontFamily:'Plus Jakarta Display, sans-serif'}}><b>Make an Appointment</b></h2>
+                    <br />
                 </div>
+                
+                <div className='col-md-12 d-flex justify-content-center' style={{marginBottom:'0 5vw'}}>
+                    <div className='custom-calendar-container'>
+                        <h6>Choose a Date</h6>
+
+                        <Calendar onChange={onChange} value={date} className="custom-calendar"/>
+                        {console.log(date)}
+                        <br />
+
+                        <div>
+                            <span>Selected Date: <b>{date.toDateString()}</b></span>
+                        </div>
+                    </div>
+                </div>
+
+                {/* <div className="col md 6">
+                    <h4>hi</h4>
+                </div> */}
             </div>
         </div>
         </section>
