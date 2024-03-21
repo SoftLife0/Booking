@@ -7,14 +7,41 @@ function Booking() {
     const [selectedDate, setSelectedDate] = useState(null);
     const [showCalendar, setShowCalendar] = useState(true);
 
-    // Function to handle date selection
     const handleDateSelect = (date) => {
         setSelectedDate(date);
     }
 
-    // Function to handle next button click
+    const handleSubmit = ({ name, telephone, date, time }) => {
+        const requestBody = {
+            name,
+            phone: telephone,
+            date,
+            time
+        };
+        // Make POST request to the API
+        fetch('https://forms.central.edu.gh/api/booking', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestBody)
+        })
+        .then(response => {
+            if (response.ok) {
+                // Handle successful response
+                console.log('Booking successful!');
+            } else {
+                // Handle error response
+                console.error('Booking failed.');
+            }
+        })
+        .catch(error => {
+            console.error('Error making booking:', error);
+        });
+    }
+
     const handleNextClick = () => {
-        setShowCalendar(false); // Hide the calendar
+        setShowCalendar(false);
     }
 
     return (
@@ -28,9 +55,8 @@ function Booking() {
                             <br />
                         </div>
                         <div className='col-md-12 d-flex justify-content-center' style={{ marginBottom: '0 5vw' }}>
-                            {/* Conditionally render CustomCalendar */}
                             {showCalendar && <CustomCalendar onSelect={handleDateSelect} onNextClick={handleNextClick} />}
-                            {!showCalendar && <InfoForm selectedDate={selectedDate} />}
+                            {!showCalendar && <InfoForm selectedDate={selectedDate} onSubmit={handleSubmit} />}
                         </div>
                     </div>
                 </div>

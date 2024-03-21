@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function LinkButton({ to, width, title }) {
+function LinkButton({ to, title }) {
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <Link to={to} className='pill-button' style={{textDecoration: 'none' }}>
