@@ -5,7 +5,7 @@ import Calendar from 'react-calendar'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 
 
-function Booking() {
+function Calender() {
     const [date, setDate] = useState(new Date());
 
     const onChange = (selectedDate) => {
@@ -38,7 +38,7 @@ function Booking() {
                         <br />
 
                         <div style={{ display: 'flex', justifyContent: 'center' }}>
-                            <Link to='/info' className='pill-button' style={{width:'50%', textDecoration:'none'}}>
+                            <Link to='' className='pill-button' style={{width:'50%', textDecoration:'none'}}>
                                 Next
                             </Link>
                         </div>
@@ -53,29 +53,4 @@ function Booking() {
 }
 
 
-export default Booking
-
-
-{/* <div className='col-md-6 offset-md-3 text-center'>
-                    <img src={logo} alt='' style={{ width: '220px' }}/>
-                    <p style={{textAlign:'center', width:'100%'}} >
-                        <b>Kindly fill in the form to book a slot</b>
-                    </p>
-                </div>
-
-                <div className='col-md-6'>
-                    <form>
-                        <div className="mb-3">
-                            <label htmlFor="name" className="form-label">Name</label>
-                            <input type="text" className="inputCard" id="name" placeholder="Enter Full Name"/>
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="name" className="form-label">Telephone</label>
-                            <input type="text" className="inputCard" id="name" placeholder="Enter Phone Number"/>
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="Time" className="form-label">Telephone</label>
-                            <input type="time" className="inputCard" id="name" placeholder="Enter Phone Number"/>
-                        </div>
-                    </form>
-                </div> */}
+export default Calender

@@ -8,7 +8,6 @@ body {
   margin: 0;
   padding: 0;
   background: #fff;
-  color: #000;
   font-family: 'Plus Jakarta Display', sans-serif;
 }
 
@@ -39,17 +38,18 @@ body {
   margin-bottom: 3vh;
 }
 
-.inputCard{
-   /* box-shadow: 0 2px 8px 0 rgba(48, 44, 255, 0.1); */
-   border-radius: 10px;    
-   border: none;
-   padding: 20px;
-   width: 100%;
-   box-shadow: 0 2px 8px 0 rgba(13, 10, 44, 0.06), 0 60px 80px 0 rgba(74, 58, 255, 0.02), 0 40px 50px 0 rgba(74, 58, 255, 0.05);
+
+.inputCard {
+  border-radius: 10px;
+  border: none;
+  padding: 20px;
+  width: 100%;
+  box-shadow: 0 2px 8px 0 rgba(13, 10, 44, 0.06), 0 60px 80px 0 rgba(74, 58, 255, 0.02), 0 40px 50px 0 rgba(74, 58, 255, 0.05);
 }
 
+
 section{
-  padding-top:10vh;
+  padding-top:7vh;
   padding-bottom:10vh;
 }
 
@@ -59,7 +59,8 @@ section{
 
 .custom-calendar {
   width: 100%; 
-  height: 90%;
+  height: 75%;
+  padding: 0 5px;
 }
 
 .custom-calendar-container .react-calendar {
@@ -101,4 +102,31 @@ section{
 
 .custom-calendar-container .react-calendar__tile--active:hover {
   background-color: #99181e !important;
+}
+
+.custom-calendar-container .react-calendar__month-view__days__day:not(.react-calendar__month-view__days__day--weekend) .react-calendar__tile {
+  color: red; /* Color for the date numbers (Monday to Friday) */
+}
+
+.time-slots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.time-slot-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px; 
+  height: 50px; 
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.time {
+  font-size: 14px;
+  font-weight: bold;
+  color: #99181e;
 }
