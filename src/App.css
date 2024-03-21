@@ -52,3 +52,42 @@ section{
   padding-top:10vh;
   padding-bottom:10vh;
 }
+
+.custom-calendar-container .react-calendar {
+  background-color: #fff; 
+  border: 1px solid #99181e;
+  border-radius: 5px;
+}
+
+.custom-calendar-container .react-calendar__navigation {
+  background-color: #99181e; 
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.custom-calendar-container .react-calendar__navigation button {
+  color: white;
+}
+
+.custom-calendar-container .react-calendar__navigation button:hover {
+  background-color: #fff;
+  color: #99181e;
+}
+
+.custom-calendar-container .react-calendar__navigation__label {
+  color: white;
+  font-weight: bold;
+}
+
+.custom-calendar-container .react-calendar__navigation__label:hover {
+  background-color: #fff;
+  color: #99181e;
+}
+
+.custom-calendar-container .react-calendar__tile--active {
+  background-color: #99181e;
+}
+
+.custom-calendar-container .react-calendar__tile--active:hover {
+  background-color: #99181e;
+}
