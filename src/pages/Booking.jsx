@@ -6,16 +6,17 @@ import InfoForm from '../component/InfoForm';
 function Booking() {
     const [selectedDate, setSelectedDate] = useState(null);
     const [showCalendar, setShowCalendar] = useState(true);
+    const [bookingData, setBookingData] = useState(null); // State to hold booking data
 
     const handleDateSelect = (date) => {
         setSelectedDate(date);
     }
 
-    const handleSubmit = ({ name, telephone, time }) => {
+    const handleSubmit = ({ name, telephone, date, time }) => {
         const requestBody = {
             name,
-            telephone,
-            date: selectedDate.toDateString(),
+            phone: telephone,
+            date: date.toDateString(), // Convert date to string
             time
         };
         // Make POST request to the API
@@ -30,10 +31,16 @@ function Booking() {
             if (response.ok) {
                 // Handle successful response
                 console.log('Booking successful!');
+                return response.json(); // Parse response body as JSON
             } else {
                 // Handle error response
                 console.error('Booking failed.');
+                throw new Error('Booking failed'); // Throw error to be caught in the next .catch block
             }
+        })
+        .then(data => {
+            // Set the booking data received from the server
+            setBookingData(data);
         })
         .catch(error => {
             console.error('Error making booking:', error);
@@ -61,6 +68,19 @@ function Booking() {
                     </div>
                 </div>
             </section>
+            {/* Display booking data if available */}
+            {bookingData && (
+                <div className="container">
+                    <div className="row justify-content-center">
+                        <div className="col-md-12">
+                            <div className="defaultCard">
+                                <h5><b>Booking Details</b></h5>
+                                <pre>{JSON.stringify(bookingData, null, 2)}</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
