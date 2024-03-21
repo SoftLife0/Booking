@@ -1,9 +1,16 @@
-import React from 'react'
+import { useState, React} from 'react'
 import Header from '../component/Header'
 import logo from '../assets/Central-Uni-logo.png'
+import Calendar from 'react-calendar'
 
 
 function Booking() {
+    const [date, setDate] = useState(new Date());
+
+    const onChange = () => {
+        setDate(date);
+    }
+
   return (
     <div>
         <Header />
@@ -36,6 +43,7 @@ function Booking() {
                 </div>
 
                 <div className='col-md-6'>
+                <Calendar onChange={onChange} value={date} />
                 </div>
             </div>
         </div>
