@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import CustomButton from './LinkButton';
 
 function InfoForm({ selectedDate }) {
     const [name, setName] = useState('');
@@ -19,22 +20,22 @@ function InfoForm({ selectedDate }) {
         <div>
 
             <div className="container">
-                <div className="row justify-content-around">
-                    <div className="col-md-6">
+                <div className="row justify-content-center">
+                    <div className="col-md-12">
                         <div className="defaultCard">
-                            <h4><b>Kindly fill in the form below</b></h4>
+                            <h5><b>Kindly fill in the form below</b></h5>
                         <form onSubmit={handleSubmit}>
                             <div className='mb-3'>
                                 <label htmlFor="name" className='form-label'>Name:</label>
                                 <input type="text" className='inputCard' placeholder='Enter Full Name' id="name" value={name} onChange={(e) => setName(e.target.value)} />
                             </div>
                             <div className='mb-3'>
-                                <label htmlFor="telephone">Telephone:</label>
+                                <label htmlFor="telephone" className='form-label'>Telephone:</label>
                                 <input type="tel" className='inputCard' placeholder='Enter Phone Number' id="telephone" value={telephone} onChange={(e) => setTelephone(e.target.value)} />
                             </div>
                             {/* Display time slots */}
                             <div>
-                                <label>Time Slots:</label>
+                                <label className='form-label'>Available Time Slots:</label>
                                 <div className='time-slots'>
                                 {dummyTimeSlots.map((time, index) => (
                                     <div key={index} className="time-slot-card">
@@ -43,8 +44,11 @@ function InfoForm({ selectedDate }) {
                                 ))}
                                 </div>
                             </div>
-                            <button type="submit">Submit</button>
+
                         </form>
+
+                        <br />
+                        <CustomButton width={50} title="Submit"/>
                         </div>
                     </div>
                 </div>
