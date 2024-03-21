@@ -1,0 +1,53 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  color: #000;
+  font-family: 'Plus Jakarta Display', sans-serif;
+}
+
+.navbar-brand h4{
+  font-size: calc(1.275rem + .3vw);
+  font-weight: 900;
+  color: #000;
+}
+.pill-button{
+  background-color: #99181e;
+  border: none;
+  color: white;
+  border-radius:10px ;
+  padding: 16px 22px;
+  box-shadow: 0 2px 8px 0 rgba(48, 44, 255, 0.1);
+  text-align: center;
+  font-weight: bold;
+  transition: width 2s;
+  width: 100%;
+}
+
+.defaultCard{
+  box-shadow: 0 2px 8px 0 rgba(13, 10, 44, 0.06), 0 60px 80px 0 rgba(74, 58, 255, 0.02), 0 40px 50px 0 rgba(74, 58, 255, 0.05);
+  cursor: pointer;
+  padding: 30px;
+  width: 100%;
+  transition: width 1s;
+  margin-bottom: 3vh;
+}
+
+.inputCard{
+   /* box-shadow: 0 2px 8px 0 rgba(48, 44, 255, 0.1); */
+   border-radius: 10px;    
+   border: none;
+   padding: 20px;
+   width: 100%;
+   box-shadow: 0 2px 8px 0 rgba(13, 10, 44, 0.06), 0 60px 80px 0 rgba(74, 58, 255, 0.02), 0 40px 50px 0 rgba(74, 58, 255, 0.05);
+}
+
+section{
+  padding-top:10vh;
+  padding-bottom:10vh;
+}
