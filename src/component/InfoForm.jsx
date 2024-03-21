@@ -39,7 +39,7 @@ function InfoForm({ selectedDate, onSubmit }) {
                                     <label className='form-label'>Select Time Slot:</label>
                                     <div className='time-slots'>
                                         {dummyTimeSlots.map((timeSlot, index) => (
-                                            <button key={index} className={`time-slot-card ${selectedTimeSlot === timeSlot ? 'selected' : ''}`} onClick={() => setSelectedTimeSlot(timeSlot)} style={{border:'none'}}>
+                                            <button key={index} className={`time-slot-card ${selectedTimeSlot === timeSlot ? 'selected' : ''}`} onClick={() => setSelectedTimeSlot(timeSlot)} style={{border:'nonezz'}}>
                                                 <span className="time">{timeSlot}</span>
                                             </button>
                                         ))}

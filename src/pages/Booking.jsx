@@ -11,15 +11,15 @@ function Booking() {
         setSelectedDate(date);
     }
 
-    const handleSubmit = ({ name, telephone, date, time }) => {
+    const handleSubmit = ({ name, telephone, time }) => {
         const requestBody = {
             name,
-            phone: telephone,
-            date,
+            telephone,
+            date: selectedDate.toDateString(),
             time
         };
         // Make POST request to the API
-        fetch('https://forms.central.edu.gh/api/booking', {
+        fetch('http://localhost:3001/api/booking', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
