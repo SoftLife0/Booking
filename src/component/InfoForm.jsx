@@ -7,7 +7,7 @@ function InfoForm({ selectedDate, onSubmit }) {
     const [selectedTimeSlot, setSelectedTimeSlot] = useState('');
     
     // Dummy time slots (replace with your actual time slot logic)
-    const dummyTimeSlots = ['9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM'];
+    const timeSlots = ['9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM'];
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -35,13 +35,14 @@ function InfoForm({ selectedDate, onSubmit }) {
                                     <label htmlFor="telephone" className='form-label'>Telephone:</label>
                                     <input type="tel" className='inputCard' placeholder='Enter Phone Number' id="telephone" value={telephone} onChange={(e) => setTelephone(e.target.value)} />
                                 </div>
+                                
                                 <div className='mb-3'>
                                     <label className='form-label'>Select Time Slot:</label>
                                     <div className='time-slots'>
-                                        {dummyTimeSlots.map((timeSlot, index) => (
-                                            <button key={index} className={`time-slot-card ${selectedTimeSlot === timeSlot ? 'selected' : ''}`} onClick={() => setSelectedTimeSlot(timeSlot)} style={{border:'nonezz'}}>
+                                        {timeSlots.map((timeSlot, index) => (
+                                            <div key={index} className={`time-slot-card ${selectedTimeSlot === timeSlot ? 'selected' : ''}`} onClick={() => setSelectedTimeSlot(timeSlot)} style={{border:'nonezz'}}>
                                                 <span className="time">{timeSlot}</span>
-                                            </button>
+                                            </div>
                                         ))}
                                     </div>
                                 </div>

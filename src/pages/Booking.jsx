@@ -2,11 +2,15 @@ import React, { useState } from 'react';
 import Header from '../component/Header';
 import CustomCalendar from '../component/CustomCalendar';
 import InfoForm from '../component/InfoForm';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 
 function Booking() {
     const [selectedDate, setSelectedDate] = useState(null);
     const [showCalendar, setShowCalendar] = useState(true);
+    const [showModal, setShowModal] = useState(false);
     const [bookingData, setBookingData] = useState(null); // State to hold booking data
+    const [nameData, setNameData] = useState(""); // State to hold name data for modal
 
     const handleDateSelect = (date) => {
         setSelectedDate(date);
@@ -31,7 +35,8 @@ function Booking() {
             if (response.ok) {
                 // Handle successful response
                 console.log('Booking successful!');
-                return response.json(); // Parse response body as JSON
+                setNameData(name); // Set name data for modal
+                setShowModal(true); // Show modal on successful booking
             } else {
                 // Handle error response
                 console.error('Booking failed.');
@@ -68,21 +73,38 @@ function Booking() {
                     </div>
                 </div>
             </section>
-            {/* Display booking data if available */}
-            {bookingData && (
-                <div className="container">
-                    <div className="row justify-content-center">
-                        <div className="col-md-12">
-                            <div className="defaultCard">
-                                <h5><b>Booking Details</b></h5>
-                                <pre>{JSON.stringify(bookingData, null, 2)}</pre>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )}
+            
+            {/* Success Modal */}
+            <Modal show={showModal} onHide={() => setShowModal(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Booking Successful</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <p>Your booking has been successfully submitted, {nameData}!</p>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShowModal(false)}>
+                        Close
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </div>
     );
 }
 
 export default Booking;
+
+
+{/* Display booking data if available */}
+{/* {bookingData && (
+    <div className="container">
+        <div className="row justify-content-center">
+            <div className="col-md-12">
+                <div className="defaultCard">
+                    <h5><b>Booking Details</b></h5>
+                    <pre>{JSON.stringify(bookingData, null, 2)}</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+)} */}

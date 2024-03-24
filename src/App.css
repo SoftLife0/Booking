@@ -31,7 +31,7 @@ body {
 
 .defaultCard{
   box-shadow: 0 2px 8px 0 rgba(13, 10, 44, 0.06), 0 60px 80px 0 rgba(74, 58, 255, 0.02), 0 40px 50px 0 rgba(74, 58, 255, 0.05);
-  cursor: pointer;
+  /* cursor: pointer; */
   padding: 30px;
   width: 100%;
   transition: width 1s;
