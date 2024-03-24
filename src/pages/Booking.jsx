@@ -5,6 +5,8 @@ import InfoForm from '../component/InfoForm';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
+import { CheckCircle } from 'react-bootstrap-icons';
+
 
 function Booking() {
     const [selectedDate, setSelectedDate] = useState(null);
@@ -78,13 +80,13 @@ function Booking() {
             {/* Success Modal */}
             <Modal show={showModal} onHide={() => setShowModal(false)}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Booking Successful</Modal.Title>
+                    <Modal.Title style={{color: '#000'}}><b><CheckCircle/> Booking Successful</b></Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <p>Your booking has been successfully submitted, {nameData}!</p>
+                    <p>Hi {nameData}, Your booking has been successfully submitted!</p>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Link to="/" className="pill-button">
+                    <Link to="/" className="btn btn-secondary">
                         Close
                     </Link>
                 </Modal.Footer>
