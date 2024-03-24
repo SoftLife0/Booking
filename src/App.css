@@ -128,6 +128,18 @@ section{
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.time-slot-card.selected {
+  background-color: #99181e;
+}
+
+.time-slot-card.selected .time {
+  color: white;
+}
+
+.time-slot-card.selected:hover {
+  background-color: #99181e;
+}
+
 .time {
   font-size: 14px;
   font-weight: bold;
