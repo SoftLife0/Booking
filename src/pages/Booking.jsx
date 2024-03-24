@@ -4,6 +4,7 @@ import CustomCalendar from '../component/CustomCalendar';
 import InfoForm from '../component/InfoForm';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 
 function Booking() {
     const [selectedDate, setSelectedDate] = useState(null);
@@ -73,7 +74,7 @@ function Booking() {
                     </div>
                 </div>
             </section>
-            
+
             {/* Success Modal */}
             <Modal show={showModal} onHide={() => setShowModal(false)}>
                 <Modal.Header closeButton>
@@ -83,9 +84,9 @@ function Booking() {
                     <p>Your booking has been successfully submitted, {nameData}!</p>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => setShowModal(false)}>
+                    <Link to="/" className="pill-button">
                         Close
-                    </Button>
+                    </Link>
                 </Modal.Footer>
             </Modal>
         </div>
@@ -93,18 +94,3 @@ function Booking() {
 }
 
 export default Booking;
-
-
-{/* Display booking data if available */}
-{/* {bookingData && (
-    <div className="container">
-        <div className="row justify-content-center">
-            <div className="col-md-12">
-                <div className="defaultCard">
-                    <h5><b>Booking Details</b></h5>
-                    <pre>{JSON.stringify(bookingData, null, 2)}</pre>
-                </div>
-            </div>
-        </div>
-    </div>
-)} */}

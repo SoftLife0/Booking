@@ -19,7 +19,7 @@ import('node-fetch').then(({ default: fetch }) => {
         console.log(`Received data: name=${name}, phone=${phone}, date=${date}, time=${time}`);
 
         // Make another POST request to the provided API URL
-        fetch('http://192.168.8.143:5000/api/booking', {
+        fetch('https://forms.central.edu.gh/api/booking', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
