@@ -6,7 +6,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import { CheckCircle } from 'react-bootstrap-icons';
-
+import { bookAppointment } from '../api'; // Import the bookAppointment function from api.js
 
 function Booking() {
     const [selectedDate, setSelectedDate] = useState(null);
@@ -19,40 +19,24 @@ function Booking() {
         setSelectedDate(date);
     }
 
-    const handleSubmit = ({ name, telephone, date, time }) => {
+    const handleSubmit = async ({ name, telephone, date, time }) => {
         const requestBody = {
             name,
             phone: telephone,
             date: date.toDateString(), // Convert date to string
             time
         };
-        // Make POST request to the API
-        fetch('https://forms.central.edu.gh/api/booking', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(requestBody)
-        })
-        .then(response => {
-            if (response.ok) {
-                // Handle successful response
-                console.log('Booking successful!');
-                setNameData(name); // Set name data for modal
-                setShowModal(true); // Show modal on successful booking
-            } else {
-                // Handle error response
-                console.error('Booking failed.');
-                throw new Error('Booking failed'); // Throw error to be caught in the next .catch block
-            }
-        })
-        .then(data => {
-            // Set the booking data received from the server
-            setBookingData(data);
-        })
-        .catch(error => {
+
+        try {
+            const data = await bookAppointment(requestBody);
+            console.log('Booking successful!');
+            setNameData(name); // Set name data for modal
+            setShowModal(true); // Show modal on successful booking
+            setBookingData(data); // Set the booking data received from the server
+        } catch (error) {
             console.error('Error making booking:', error);
-        });
+            // Handle error here, e.g., display error message to the user
+        }
     }
 
     const handleNextClick = () => {
