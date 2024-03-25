@@ -6,7 +6,9 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import { CheckCircle } from 'react-bootstrap-icons';
-import { bookAppointment } from '../api'; // Import the bookAppointment function from api.js
+import { bookTimeSlot } from '../api/serverAPI';
+
+// import { bookTimeSlot } from '../../server/server';
 
 function Booking() {
     const [selectedDate, setSelectedDate] = useState(null);
@@ -28,7 +30,7 @@ function Booking() {
         };
 
         try {
-            const data = await bookAppointment(requestBody);
+            const data = await bookTimeSlot(requestBody);
             console.log('Booking successful!');
             setNameData(name); // Set name data for modal
             setShowModal(true); // Show modal on successful booking

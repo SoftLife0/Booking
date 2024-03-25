@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const { bookTimeSlot } = require('./api'); // Import the bookTimeSlot function from api.js
+const { bookTimeSlot } = require('./utils');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
