@@ -57,7 +57,7 @@ const Landing = () => {
           </div>
           <h5><b>Note</b>: Screening ends in 10 days</h5>
           <div>
-            <button onClick={handleMakeAppointment} className="pill-button mt-3" style={{ background: '#ff0000' }}><b>Book an Appointment</b></button>
+            <button onClick={handleMakeAppointment} className="pill-button mt-3" style={{ background: '#ca181e' }}><b>Book an Appointment</b></button>
           </div>
         </div>
       </header>
