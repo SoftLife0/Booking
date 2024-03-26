@@ -13,8 +13,9 @@ function Booking() {
     const [selectedDate, setSelectedDate] = useState(null);
     const [showCalendar, setShowCalendar] = useState(true);
     const [showModal, setShowModal] = useState(false);
-    const [bookingData, setBookingData] = useState(null); // State to hold booking data
-    const [nameData, setNameData] = useState(""); // State to hold name data for modal
+    const [loading, setLoading] = useState(false)
+    const [bookingData, setBookingData] = useState(null);
+    const [nameData, setNameData] = useState(""); 
     const history = useHistory();
 
     const handleDateSelect = (date) => {
@@ -22,6 +23,7 @@ function Booking() {
     }
 
     const handleSubmit = ({ name, telephone, date, time }) => {
+        // setLoading(true);
         const requestBody = {
             name,
             phone: telephone,
@@ -29,7 +31,7 @@ function Booking() {
             time
         };
         // Make POST request to the API
-        fetch('https://forms.central.edu.gh/api/booking', {
+        fetch('http://localhost:3001/api/booking', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -51,12 +53,17 @@ function Booking() {
         .then(data => {
             // Set the booking data received from the server
             setBookingData(data);
-
+        
             setTimeout(() => {
-                history.push("/");
-            }, 6000);
+                setLoading(true); // Show loading screen
+                setTimeout(() => {
+                    setLoading(false); // Hide loading screen
+                    history.push("/"); // Redirect to the landing page
+                }, 3000); // Redirect after 5 seconds
+            }, 3000); // Show loading screen after 5 seconds
         })
-        .catch(error => {
+        .catch(error => {   
+            setLoading(false);
             console.error('Error making booking:', error);
         });
     }
@@ -82,6 +89,21 @@ function Booking() {
                     </div>
                 </div>
             </section>
+
+
+            {/* Loading Screen */}
+            {loading && (
+                <div id="loading" style={{ height: '100vh', width: '100vw', display: 'flex', backgroundColor: '#fff', position: 'fixed', top: 0, alignItems: 'center', justifyContent: 'center', zIndex: 9999 }}>
+                    <div>
+                        <div style={{ width: '100%', textAlign: 'center' }}>
+                            <div className="spinner-border m-5" style={{ width: '3rem', height: '3rem' }} role="status">
+                                <span className="sr-only"></span>
+                            </div>
+                            <h6 style={{ textAlign: 'center' }}>Redirecting.....</h6>
+                        </div>
+                    </div>
+                </div>
+            )}
 
             {/* Success Modal */}
             <Modal show={showModal} onHide={() => setShowModal(false)}>
