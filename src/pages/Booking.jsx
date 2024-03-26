@@ -79,7 +79,7 @@ function Booking() {
                 <div className='container'>
                     <div className='row'>
                         <div>
-                            <h2 style={{ fontFamily: 'Poppins, sans-serif' }}><b>Make an Appointment</b></h2>
+                            <h3 style={{ fontFamily: 'Poppins, sans-serif' }}><b>Make an Appointment</b></h3>
                             <br />
                         </div>
                         <div className='col-md-12 d-flex justify-content-center' style={{ marginBottom: '0 5vw' }}>
