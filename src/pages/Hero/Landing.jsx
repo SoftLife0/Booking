@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import './Landing.css';
+// import logo from '../../assets/hero.png'
 
 const Landing = () => {
   const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
@@ -46,7 +47,8 @@ const Landing = () => {
     <div id="hero">
       <header id="header" className="d-flex align-items-center">
         <div className="container d-flex flex-column align-items-center">
-          <h2 style={{ textAlign: 'center' }}>Ongoing Medical Screening Program. Book your appointment now !</h2>
+          {/* <img src={logo} width={150} alt="" /> */}
+          <h2 style={{ textAlign: 'center', fontWeight:'bold' }}>Ongoing Medical Screening Program. Book your appointment now !</h2>
           <div className="countdown d-flex justify-content-center" data-count={new Date().getFullYear() + '/' + (new Date().getMonth() + 1) + '/' + (new Date().getDate() + 10)}>
             <div className="countdown-item">
                 <h3>{countdown.days}</h3>
