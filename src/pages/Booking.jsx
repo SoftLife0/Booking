@@ -31,7 +31,7 @@ function Booking() {
             time
         };
         // Make POST request to the API
-        fetch('http://localhost:3001/api/booking', {
+        fetch('https://forms.central.edu.gh/api/booking', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
