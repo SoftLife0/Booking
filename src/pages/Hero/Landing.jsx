@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import './Landing.css';
 
 const Landing = () => {
   const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [isBookingOpen, setIsBookingOpen] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
     const countDownDate = () => {
@@ -37,8 +39,7 @@ const Landing = () => {
   }, []);
 
   const handleMakeAppointment = () => {
-    // Handle appointment booking logic here
-    // This function will be called when the "Make an Appointment" button is clicked
+    history.push('/booking')
   };
 
   return (

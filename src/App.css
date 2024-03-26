@@ -17,7 +17,7 @@ body {
   color: #000;
 }
 .pill-button{
-  background-color: #99181e;
+  background-color: #ff0000;
   border: none;
   color: white;
   border-radius:10px ;
@@ -68,12 +68,12 @@ section{
 
 .custom-calendar-container .react-calendar {
   background-color: #fff; 
-  border: 1px solid #99181e;
+  border: 1px solid #000;
   border-radius: 5px;
 }
 
 .custom-calendar-container .react-calendar__navigation {
-  background-color: #99181e; 
+  background-color: #ff0000; 
   border-radius: 5px;
   padding: 10px;
 }
@@ -84,7 +84,7 @@ section{
 
 .custom-calendar-container .react-calendar__navigation button:hover {
   background-color: #fff;
-  color: #99181e;
+  color: #ff0000;
 }
 
 .custom-calendar-container .react-calendar__navigation__label {
@@ -94,21 +94,21 @@ section{
 
 .custom-calendar-container .react-calendar__navigation__label:hover {
   background-color: #fff;
-  color: #99181e;
+  color: #ff0000;
 }
 
 .custom-calendar-container .react-calendar__tile--active {
-  background-color: #99181e !important;
+  background-color: #ff0000 !important;
   border-radius: 5px;
   width: 90px;
 }
 
 .custom-calendar-container .react-calendar__tile--active:hover {
-  background-color: #99181e !important;
+  background-color: #ff0000 !important;
 }
 
 .custom-calendar-container .react-calendar__month-view__days__day:not(.react-calendar__month-view__days__day--weekend) .react-calendar__tile {
-  color: red; /* Color for the date numbers (Monday to Friday) */
+  color: #ff0000; /* Color for the date numbers (Monday to Friday) */
 }
 
 .time-slots {
@@ -129,7 +129,7 @@ section{
 }
 
 .time-slot-card.selected {
-  background-color: #99181e;
+  background-color: #ff0000;
 }
 
 .time-slot-card.selected .time {
@@ -137,11 +137,11 @@ section{
 }
 
 .time-slot-card.selected:hover {
-  background-color: #99181e;
+  background-color: #ff0000;
 }
 
 .time {
   font-size: 14px;
   font-weight: bold;
-  color: #99181e;
+  color: #ff0000;
 }

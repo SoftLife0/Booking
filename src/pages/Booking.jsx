@@ -6,9 +6,8 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import { CheckCircle } from 'react-bootstrap-icons';
-import { bookTimeSlot } from '../api/serverAPI';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
-// import { bookTimeSlot } from '../../server/server';
 
 function Booking() {
     const [selectedDate, setSelectedDate] = useState(null);
@@ -16,29 +15,50 @@ function Booking() {
     const [showModal, setShowModal] = useState(false);
     const [bookingData, setBookingData] = useState(null); // State to hold booking data
     const [nameData, setNameData] = useState(""); // State to hold name data for modal
+    const history = useHistory();
 
     const handleDateSelect = (date) => {
         setSelectedDate(date);
     }
 
-    const handleSubmit = async ({ name, telephone, date, time }) => {
+    const handleSubmit = ({ name, telephone, date, time }) => {
         const requestBody = {
             name,
             phone: telephone,
             date: date.toDateString(), // Convert date to string
             time
         };
+        // Make POST request to the API
+        fetch('https://forms.central.edu.gh/api/booking', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestBody)
+        })
+        .then(response => {
+            if (response.ok) {
+                // Handle successful response
+                console.log('Booking successful!');
+                setNameData(name); // Set name data for modal
+                setShowModal(true); // Show modal on successful booking
+            } else {
+                // Handle error response
+                console.error('Booking failed.');
+                throw new Error('Booking failed'); // Throw error to be caught in the next .catch block
+            }
+        })
+        .then(data => {
+            // Set the booking data received from the server
+            setBookingData(data);
 
-        try {
-            const data = await bookTimeSlot(requestBody);
-            console.log('Booking successful!');
-            setNameData(name); // Set name data for modal
-            setShowModal(true); // Show modal on successful booking
-            setBookingData(data); // Set the booking data received from the server
-        } catch (error) {
+            setTimeout(() => {
+                history.push("/");
+            }, 6000);
+        })
+        .catch(error => {
             console.error('Error making booking:', error);
-            // Handle error here, e.g., display error message to the user
-        }
+        });
     }
 
     const handleNextClick = () => {
