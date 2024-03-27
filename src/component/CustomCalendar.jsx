@@ -12,11 +12,17 @@ function CustomCalendar({ onSelect, onNextClick }) {
         }
     }
 
+    const tileDisabled = ({ date, view }) => {
+        if (view === 'month') {
+            return date.getDay() === 0 || date.getDay() === 6; // Disable Sunday (0) and Saturday (6)
+        }
+    };
+
     return (
         <div>
             <h6>Choose a Date</h6>
             <div className='custom-calendar-container'>
-                <Calendar onChange={onChange} value={date} className='custom-calendar' />
+                <Calendar onChange={onChange} value={date} className='custom-calendar' tileDisabled={tileDisabled} />
             </div>
             <br />
 
