@@ -31,15 +31,10 @@ const Landing = () => {
     const calculateRemainingDays = () => {
       const now = new Date();
       const endTimeOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
-      const timeDifference = endTimeOfDay.getTime() - now.getTime();
+      const startTimeOfNextDay = new Date(endTimeOfDay.getFullYear(), endTimeOfDay.getMonth(), endTimeOfDay.getDate());
+      const timeDifference = startTimeOfNextDay.getTime() - now.getTime();
       const daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
-      setRemainingDays(prevDays => {
-        if (timeDifference <= 0) {
-          return prevDays + 1; // Increment by 1 when the day ends
-        } else {
-          return prevDays;
-        }
-      });
+      setRemainingDays(daysDifference);
     };
 
     calculateRemainingDays(); // Calculate remaining days initially
