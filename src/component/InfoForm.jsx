@@ -1,21 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function InfoForm({ selectedDate, onSubmit }) {
     const [name, setName] = useState('');
     const [telephone, setTelephone] = useState('');
     const [selectedTimeSlot, setSelectedTimeSlot] = useState('');
+    const [availableTimeSlots, setAvailableTimeSlots] = useState([]);
+
+    useEffect(() => {
+        if (selectedDate) {
+            fetchAvailableTimeSlots(selectedDate);
+        }
+    }, [selectedDate]);
+
+    const fetchAvailableTimeSlots = (date) => {
+        fetch(`https://forms.central.edu.gh/api/booking?date=${date}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch available time slots');
+                }
+                return response.json();
+            })
+            .then(data => {
+                setAvailableTimeSlots(data.available_time_slots || []);
+            })
+            .catch(error => {
+                console.error('Error fetching available time slots:', error);
+            });
+    };
     
-    const dummyTimeSlots = ['9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM'];
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // Check if all required fields are filled
         if (name && telephone && selectedDate && selectedTimeSlot) {
             onSubmit({ name, telephone, date: selectedDate, time: selectedTimeSlot });
         } else {
             alert('Please fill in all fields');
         }
-    }
+    };
 
     return (
         <div>
@@ -36,8 +57,8 @@ function InfoForm({ selectedDate, onSubmit }) {
                                 <div className='mb-3'>
                                     <label className='form-label'>Select Time Slot:</label>
                                     <div className='time-slots'>
-                                        {dummyTimeSlots.map((timeSlot, index) => (
-                                            <div key={index} type="button" className={`time-slot-card ${selectedTimeSlot === timeSlot ? 'selected' : ''}`} onClick={() => setSelectedTimeSlot(timeSlot)} style={{border:'nonezz'}}>
+                                        {availableTimeSlots.map((timeSlot, index) => (
+                                            <div key={index} className={`time-slot-card ${selectedTimeSlot === timeSlot ? 'selected' : ''}`} onClick={() => setSelectedTimeSlot(timeSlot)}>
                                                 <span className="time">{timeSlot}</span>
                                             </div>
                                         ))}

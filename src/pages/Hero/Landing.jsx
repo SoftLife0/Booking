@@ -30,11 +30,12 @@ const Landing = () => {
 
     const calculateRemainingDays = () => {
       const now = new Date();
-      const endTimeOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
-      const startTimeOfNextDay = new Date(endTimeOfDay.getFullYear(), endTimeOfDay.getMonth(), endTimeOfDay.getDate());
-      const timeDifference = startTimeOfNextDay.getTime() - now.getTime();
-      const daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
-      setRemainingDays(daysDifference);
+      const gmtNow = new Date(now.getTime() + now.getTimezoneOffset() * 60000); // Convert to GMT time
+      const startOfGmtDay = new Date(gmtNow.getFullYear(), gmtNow.getMonth(), gmtNow.getDate());
+      const timeDifference = gmtNow.getTime() - startOfGmtDay.getTime();
+      const daysElapsed = Math.floor(timeDifference / (1000 * 60 * 60 * 24)); // Number of elapsed 24-hour periods
+      const remainingDays = 1 - (daysElapsed % 2); // 1 day is active, 1 day is inactive
+      setRemainingDays(remainingDays);
     };
 
     calculateRemainingDays(); // Calculate remaining days initially
@@ -55,16 +56,13 @@ const Landing = () => {
       <header id="header" className="d-flex align-items-center">
         <div className="container d-flex flex-column align-items-center">
           <h2 style={{ textAlign: 'center', fontWeight:'bold' }}>Annual Medical Screening Program. Book your appointment now !</h2>
-          <h5><b>Screening Ends in 40 days 👇</b></h5>
+          <h5><b>Screening Ends in 40 day(s) 👇</b></h5>
 
           <div className="countdown d-flex justify-content-center">
-            {/* Remaining days */}
             <div className="countdown-item">
               <h3>{remainingDays}</h3>
               <h4>Days</h4>
             </div>
-
-            {/* Current time */}
             <div className="countdown-item">
               <h3>{hours}</h3>
               <h4>Hours</h4>
@@ -80,7 +78,6 @@ const Landing = () => {
             <div className="countdown-item">
               <h3>{period}</h3>
             </div>
-            
           </div>
           <div>
             <button onClick={handleMakeAppointment} className="pill-button mt-3" style={{ background: '#ca181e' }}><b>Book an Appointment</b></button>
