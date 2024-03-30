@@ -56,7 +56,7 @@ const Landing = () => {
       <header id="header" className="d-flex align-items-center">
         <div className="container d-flex flex-column align-items-center">
           <h2 style={{ textAlign: 'center', fontWeight:'bold' }}>Annual Medical Screening Program. Book your appointment now !</h2>
-          <h5><b>dgfhjkli';kjhgdfsd Ends in 40 day(s) 👇</b></h5>
+          <h5><b>Screening Ends in 40 day(s) 👇</b></h5>
 
           <div className="countdown d-flex justify-content-center">
             <div className="countdown-item">
