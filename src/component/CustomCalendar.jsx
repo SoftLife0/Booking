@@ -3,7 +3,7 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
 function CustomCalendar({ onSelect, onNextClick }) {
-    const [date, setDate] = useState(new Date());
+    const [date, setDate] = useState(null);
     const [disabledDates, setDisabledDates] = useState([]);
 
     useEffect(() => {
@@ -19,8 +19,16 @@ function CustomCalendar({ onSelect, onNextClick }) {
                 return response.json();
             })
             .then(data => {
-                const availableDates = data.available_dates.map(dateString => new Date(dateString));
-                setDisabledDates(availableDates);
+                if (data && data.data && Array.isArray(data.data)) {
+                    const availableDates = data.data.map(dateString => new Date(dateString));
+                    setDisabledDates(availableDates);
+                    // Set the initial date to the first available date
+                    if (availableDates.length > 0) {
+                        setDate(availableDates[0]);
+                    }
+                } else {
+                    throw new Error('Available dates data is missing or not in the expected format');
+                }
             })
             .catch(error => {
                 console.error('Error fetching available dates:', error);
@@ -28,15 +36,26 @@ function CustomCalendar({ onSelect, onNextClick }) {
     };
 
     const onChange = (selectedDate) => {
-        setDate(selectedDate);
-        if (onSelect) {
-            onSelect(selectedDate);
+        if (disabledDates.some(disabledDate => selectedDate.toDateString() === disabledDate.toDateString())) {
+            setDate(selectedDate);
+            if (onSelect) {
+                onSelect(selectedDate);
+            }
         }
     };
 
     const tileDisabled = ({ date, view }) => {
         if (view === 'month') {
-            return date.getDay() === 0 || date.getDay() === 6 || disabledDates.some(disabledDate => date.toDateString() === disabledDate.toDateString());
+            // Disable Sundays and Saturdays
+            if (date.getDay() === 0 || date.getDay() === 6) {
+                return true;
+            }
+            // Disable dates not in the array of available dates
+            return !disabledDates.some(disabledDate => {
+                const disabledDateString = disabledDate.toISOString().slice(0, 10); // Format date as YYYY-MM-DD
+                const dateString = date.toISOString().slice(0, 10);
+                return dateString === disabledDateString;
+            });
         }
     };
 
@@ -49,7 +68,7 @@ function CustomCalendar({ onSelect, onNextClick }) {
             <br />
 
             <div>
-                <span>Selected Date: <b>{date.toDateString()}</b></span>
+                <span>Selected Date: <b>{date ? date.toDateString() : ''}</b></span>
             </div>
 
             <br />

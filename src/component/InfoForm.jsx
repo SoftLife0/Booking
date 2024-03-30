@@ -5,6 +5,7 @@ function InfoForm({ selectedDate, onSubmit }) {
     const [telephone, setTelephone] = useState('');
     const [selectedTimeSlot, setSelectedTimeSlot] = useState('');
     const [availableTimeSlots, setAvailableTimeSlots] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         if (selectedDate) {
@@ -13,7 +14,8 @@ function InfoForm({ selectedDate, onSubmit }) {
     }, [selectedDate]);
 
     const fetchAvailableTimeSlots = (date) => {
-        fetch(`https://forms.central.edu.gh/api/booking?date=${date}`)
+        setLoading(true);
+        fetch(`https://forms.central.edu.gh/api/booking?date=${date.toISOString().slice(0, 10)}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Failed to fetch available time slots');
@@ -21,10 +23,13 @@ function InfoForm({ selectedDate, onSubmit }) {
                 return response.json();
             })
             .then(data => {
-                setAvailableTimeSlots(data.available_time_slots || []);
+                console.log('Available time slots data:', data);
+                setAvailableTimeSlots(data.data || []); // Update to access 'data' property
+                setLoading(false);
             })
             .catch(error => {
                 console.error('Error fetching available time slots:', error);
+                setLoading(false);
             });
     };
     
@@ -57,11 +62,15 @@ function InfoForm({ selectedDate, onSubmit }) {
                                 <div className='mb-3'>
                                     <label className='form-label'>Select Time Slot:</label>
                                     <div className='time-slots'>
-                                        {availableTimeSlots.map((timeSlot, index) => (
-                                            <div key={index} className={`time-slot-card ${selectedTimeSlot === timeSlot ? 'selected' : ''}`} onClick={() => setSelectedTimeSlot(timeSlot)}>
-                                                <span className="time">{timeSlot}</span>
-                                            </div>
-                                        ))}
+                                        {loading ? (
+                                            <div>Loading...</div>
+                                        ) : (
+                                            availableTimeSlots.map((timeSlot, index) => (
+                                                <div key={index} className={`time-slot-card ${selectedTimeSlot === timeSlot ? 'selected' : ''}`} onClick={() => setSelectedTimeSlot(timeSlot)}>
+                                                    <span className="time">{timeSlot}</span>
+                                                </div>
+                                            ))
+                                        )}
                                     </div>
                                 </div>
 
