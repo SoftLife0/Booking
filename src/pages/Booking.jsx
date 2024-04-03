@@ -18,16 +18,27 @@ function Booking() {
     const [nameData, setNameData] = useState(""); 
     const history = useHistory();
 
+    const formatDate = (date) => {
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are 0-based
+        const year = date.getFullYear().toString();
+        return `${day}/${month}/${year}`;
+    };
+
     const handleDateSelect = (date) => {
         setSelectedDate(date);
     }
 
+    const handleNextClick = () => {
+        setShowCalendar(false);
+    };
+    
     const handleSubmit = ({ name, telephone, date, time }) => {
         // setLoading(true);
         const requestBody = {
             name,
             phone: telephone,
-            date: date.toDateString(), // Convert date to string
+            date: formatDate(date), // Format the date using formatDate function
             time
         };
         // Make POST request to the API
@@ -66,10 +77,6 @@ function Booking() {
             setLoading(false);
             console.error('Error making booking:', error);
         });
-    }
-
-    const handleNextClick = () => {
-        setShowCalendar(false);
     }
 
     return (
