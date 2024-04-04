@@ -3,41 +3,49 @@ import React, { useState, useEffect } from 'react';
 function InfoForm({ selectedDate, onSubmit }) {
     const [name, setName] = useState('');
     const [telephone, setTelephone] = useState('');
-    const [selectedTimeSlot, setSelectedTimeSlot] = useState('');
-    const [availableTimeSlots, setAvailableTimeSlots] = useState([]);
+    // const [selectedTimeSlot, setSelectedTimeSlot] = useState('');
+    // const [availableTimeSlots, setAvailableTimeSlots] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-        if (selectedDate) {
-            fetchAvailableTimeSlots(selectedDate);
-        }
-    }, [selectedDate]);
+    // useEffect(() => {
+    //     if (selectedDate) {
+    //         fetchAvailableTimeSlots(selectedDate);
+    //     }
+    // }, [selectedDate]);
 
-    const fetchAvailableTimeSlots = (date) => {
-        setLoading(true);
-        fetch(`https://forms.central.edu.gh/api/booking?date=${date.toISOString().slice(0, 10)}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to fetch available time slots');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Available time slots data:', data);
-                setAvailableTimeSlots(data.data || []); // Update to access 'data' property
-                setLoading(false);
-            })
-            .catch(error => {
-                console.error('Error fetching available time slots:', error);
-                setLoading(false);
-            });
-    };
+    // const fetchAvailableTimeSlots = (date) => {
+    //     setLoading(true);
+    //     fetch(`https://forms.central.edu.gh/api/booking?date=${date.toISOString().slice(0, 10)}`)
+    //         .then(response => {
+    //             if (!response.ok) {
+    //                 throw new Error('Failed to fetch available time slots');
+    //             }
+    //             return response.json();
+    //         })
+    //         .then(data => {
+    //             console.log('Available time slots data:', data);
+    //             setAvailableTimeSlots(data.data || []); // Update to access 'data' property
+    //             setLoading(false);
+    //         })
+    //         .catch(error => {
+    //             console.error('Error fetching available time slots:', error);
+    //             setLoading(false);
+    //         });
+    // };
     
+    // const handleSubmit = (event) => {
+    //     event.preventDefault();
+    //     if (name && telephone && selectedDate && selectedTimeSlot) {
+    //         onSubmit({ name, telephone, date: selectedDate, time: selectedTimeSlot });
+    //     } else {
+    //         alert('Please fill in all fields');
+    //     }
+    // };
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (name && telephone && selectedDate && selectedTimeSlot) {
-            onSubmit({ name, telephone, date: selectedDate, time: selectedTimeSlot });
+        if (name && telephone && selectedDate ) {
+            onSubmit({ name, telephone, date: selectedDate });
         } else {
             alert('Please fill in all fields');
         }
@@ -59,7 +67,7 @@ function InfoForm({ selectedDate, onSubmit }) {
                                     <label htmlFor="telephone" className='form-label'>Telephone:</label>
                                     <input type="tel" className='inputCard' placeholder='Enter Phone Number' id="telephone" value={telephone} onChange={(e) => setTelephone(e.target.value)} />
                                 </div>
-                                <div className='mb-3'>
+                                {/* <div className='mb-3'>
                                     <label className='form-label'>Select Time Slot:</label>
                                     <div className='time-slots'>
                                         {loading ? (
@@ -72,7 +80,7 @@ function InfoForm({ selectedDate, onSubmit }) {
                                             ))
                                         )}
                                     </div>
-                                </div>
+                                </div> */}
 
                                 <button type="submit" className='pill-button' onClick={handleSubmit}>Submit</button>
                             </form>
