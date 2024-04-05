@@ -33,13 +33,12 @@ function Booking() {
         setShowCalendar(false);
     };
     
-    const handleSubmit = ({ name, telephone, date, time }) => {
+    const handleSubmit = ({ name, telephone, date }) => {
         // setLoading(true);
         const requestBody = {
             name,
             phone: telephone,
             date: formatDate(date), // Format the date using formatDate function
-            time
         };
         // Make POST request to the API
         fetch('https://forms.central.edu.gh/api/booking', {
