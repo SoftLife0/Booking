@@ -45,7 +45,9 @@ function InfoForm({ selectedDate, onSubmit }) {
     const handleSubmit = (event) => {
         event.preventDefault();
         if (name && telephone && selectedDate ) {
+            setLoading(true); // Set loading to true when form is submitted
             onSubmit({ name, telephone, date: selectedDate });
+            // You may want to reset form fields here if needed
         } else {
             alert('Please fill in all fields');
         }
