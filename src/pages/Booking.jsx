@@ -87,7 +87,7 @@ function Booking() {
                             <h3 style={{ fontFamily: 'Poppins, sans-serif' }}><b>Book an Appointment</b></h3>
                             <br />
                         </div>
-                        <div className='col-md-12 d-flex justify-content-center' style={{ marginBottom: '0 5vw' }}>
+                        <div className='' style={{ marginBottom: '0 5vw' }}>
                             {showCalendar && <CustomCalendar onSelect={handleDateSelect} onNextClick={handleNextClick} />}
                             {!showCalendar && <InfoForm selectedDate={selectedDate} onSubmit={handleSubmit} />}
                         </div>

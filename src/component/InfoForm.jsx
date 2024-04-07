@@ -53,9 +53,9 @@ function InfoForm({ selectedDate, onSubmit }) {
 
     return (
         <div>
-            <div className="container">
+            <div className="container-fluid">
                 <div className="row justify-content-center">
-                    <div className="col-md-12">
+                    <div className="col-md-8">
                         <div className="defaultCard">
                             <h5><b>Kindly fill in the form below</b></h5>
                             <form>
@@ -81,7 +81,7 @@ function InfoForm({ selectedDate, onSubmit }) {
                                         )}
                                     </div>
                                 </div> */}
-
+                                <br />
                                 <button type="submit" className='pill-button' onClick={handleSubmit}>Submit</button>
                             </form>
                         </div>
