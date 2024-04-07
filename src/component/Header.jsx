@@ -10,7 +10,12 @@ function Navbar() {
             <h4>central.edu.gh</h4>
           </Link>
 
-          <button
+          <div>
+              <Link to="" className='pill-button' style={{ textDecoration: 'none'}}>
+                Dashboard
+              </Link>
+          </div>
+          {/* <button
             className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
@@ -40,7 +45,7 @@ function Navbar() {
                 Dashboard
               </Link>
             </div>
-          </div>
+          </div> */}
         </div>
       </nav>
     </div>
