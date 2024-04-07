@@ -11,7 +11,7 @@ const Landing = () => {
   const history = useHistory();
 
   useEffect(() => {
-    const updateCurrentTime = () => {
+    const updateCurrentTime = () => { 
       const now = new Date();
       const hours = now.getHours();
       const minutes = now.getMinutes();
@@ -28,23 +28,22 @@ const Landing = () => {
     updateCurrentTime();
     const currentTimeInterval = setInterval(updateCurrentTime, 1000);
 
-    // Calculate remaining days based on the difference between the current time and the start time
-    const calculateRemainingDays = () => {
+    const updateRemainingDays = () => {
       const now = new Date();
-      const gmtNow = new Date(now.getTime() + now.getTimezoneOffset() * 60000); // Convert to GMT time
-      const startOfGmtDay = new Date(gmtNow.getFullYear(), gmtNow.getMonth(), gmtNow.getDate());
-      const timeDifference = gmtNow.getTime() - startOfGmtDay.getTime();
-      const daysElapsed = Math.floor(timeDifference / (1000 * 60 * 60 * 24)); // Number of elapsed 24-hour periods
-      const remainingDays = 40 - daysElapsed; // Countdown starts from 40 days
-      setRemainingDays(remainingDays > 0 ? remainingDays : 0); // Ensure remaining days is never negative
+      const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      
+      if (now.getHours() === 0 && now.getMinutes() === 0 && now.getSeconds() === 0) {
+        // If it's the start of a new day, reduce remaining days by 1
+        setRemainingDays(prevDays => (prevDays > 0 ? prevDays - 1 : 0));
+      }
     };
 
-    calculateRemainingDays(); // Calculate remaining days initially
-    const remainingDaysInterval = setInterval(calculateRemainingDays, 1000); // Update every second
+    updateRemainingDays(); // Check if remaining days need to be updated initially
+    const updateDaysInterval = setInterval(updateRemainingDays, 1000); // Check every second
 
     return () => {
       clearInterval(currentTimeInterval);
-      clearInterval(remainingDaysInterval);
+      clearInterval(updateDaysInterval);
     };
   }, []);
 
@@ -55,8 +54,8 @@ const Landing = () => {
   return (
     <div id="hero">
       <header id="header" className="d-flex align-items-center">
-        <div className="container d-flex flex-column align-items-center" style={{padding:'0 5px'}}>
-          <h2 style={{ textAlign: 'center', fontWeight:'bold' }}>Annual Medical Screening Program. Book your appointment now !</h2>
+        <div className="container d-flex flex-column align-items-center" style={{ padding: '0 5px' }}>
+          <h2 style={{ textAlign: 'center', fontWeight: 'bold' }}>Annual Medical Screening Program. Book your appointment now !</h2>
           <h5><b>Screening Ends in {remainingDays} day(s) 👇</b></h5>
 
           <div className="countdown d-flex justify-content-center">
