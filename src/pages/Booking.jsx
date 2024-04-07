@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import Header from '../component/Header';
 import CustomCalendar from '../component/CustomCalendar';
 import InfoForm from '../component/InfoForm';
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
+import CustomModal from '../component/CustomModal'; // Import the CustomModal component
 import { Link } from 'react-router-dom';
 import { CheckCircle } from 'react-bootstrap-icons';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
@@ -13,7 +12,7 @@ function Booking() {
     const [selectedDate, setSelectedDate] = useState(null);
     const [showCalendar, setShowCalendar] = useState(true);
     const [showModal, setShowModal] = useState(false);
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
     const [bookingData, setBookingData] = useState(null);
     const [nameData, setNameData] = useState(""); 
     const history = useHistory();
@@ -96,24 +95,19 @@ function Booking() {
                 </div>
             </section>
 
-
             {/* Loading Screen */}
             {loading && <LoadingScreen message="Redirecting..." />}
 
             {/* Success Modal */}
-            <Modal show={showModal} onHide={() => setShowModal(false)}>
-                <Modal.Header closeButton>
-                    <Modal.Title style={{color: '#000'}}><b><CheckCircle/> Booking Successful</b></Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <p>Hi {nameData}, Your booking has been successfully submitted!</p>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Link to="/" className="btn btn-secondary">
-                        Close
-                    </Link>
-                </Modal.Footer>
-            </Modal>
+            <CustomModal
+                show={showModal}
+                onHide={() => setShowModal(false)}
+                title={<b><CheckCircle/> Booking Successful</b>}
+                body={<p>Hi {nameData}, Your booking has been successfully submitted!</p>}
+                buttonText="Close"
+                buttonVariant="secondary"
+                buttonLink="/"
+            />
         </div>
     );
 }

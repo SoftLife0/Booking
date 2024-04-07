@@ -60,10 +60,10 @@ function CustomCalendar({ onSelect, onNextClick }) {
     };
 
     return (
-        <div>
-            <h6>Choose a Date</h6>
+        <div className=''>
+            <h5>Choose a Date</h5>
             <div className='custom-calendar-container'>
-                <Calendar onChange={onChange} value={date} tileDisabled={tileDisabled} />
+                <Calendar onChange={onChange} value={date} tileDisabled={tileDisabled} className='custom-calendar'/>
             </div>
             <br />
 
