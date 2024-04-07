@@ -61,19 +61,26 @@ function CustomCalendar({ onSelect, onNextClick }) {
 
     return (
         <div className=''>
-            <h5>Choose a Date</h5>
-            <div className='custom-calendar-container'>
-                <Calendar onChange={onChange} value={date} tileDisabled={tileDisabled} className='custom-calendar'/>
-            </div>
-            <br />
+            <div className="container">
+                <div className="row justify-content-center">
+                    <div className="col-md-8">
+                        <h5>Choose a Date</h5>
 
-            <div>
-                <span>Selected Date: <b>{date ? date.toDateString() : ''}</b></span>
-            </div>
+                        <div className='custom-calendar-container'>
+                            <Calendar onChange={onChange} value={date} tileDisabled={tileDisabled} className='custom-calendar'/>
+                        </div>
+                        <br />
 
-            <br />
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <button className='pill-button' onClick={onNextClick} style={{ width: '50%' }}>Next</button>
+                        <div>
+                            <span>Selected Date: <b>{date ? date.toDateString() : ''}</b></span>
+                        </div>
+
+                        <br />
+                        <div style={{ display: 'flex', justifyContent: 'center' }}>
+                            <button className='pill-button' onClick={onNextClick} style={{ width: '50%' }}>Next</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );
