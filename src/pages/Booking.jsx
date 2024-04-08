@@ -40,7 +40,7 @@ function Booking() {
             date: formatDate(date), // Format the date using formatDate function
         };
         // Make POST request to the API
-        fetch('http://172.16.12.23:5000/api/booking', {
+        fetch('https://forms.central.edu.gh/api/booking', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
