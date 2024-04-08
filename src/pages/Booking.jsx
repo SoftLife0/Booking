@@ -33,22 +33,24 @@ function Booking() {
     };
     
     const handleSubmit = ({ name, telephone, date }) => {
-        // setLoading(true);
+        setLoading(true);
         const requestBody = {
             name,
             phone: telephone,
             date: formatDate(date), // Format the date using formatDate function
         };
         // Make POST request to the API
-        fetch('https://forms.central.edu.gh/api/booking', {
+        fetch('http://172.16.12.23:5000/api/booking', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(requestBody)
+            
         })
         .then(response => {
             if (response.ok) {
+                setLoading(false);
                 // Handle successful response
                 console.log('Booking successful!');
                 setNameData(name); // Set name data for modal
@@ -96,7 +98,7 @@ function Booking() {
             </section>
 
             {/* Loading Screen */}
-            {loading && <LoadingScreen message="Redirecting..." />}
+            {loading && <LoadingScreen message="Loading..." />}
 
             {/* Success Modal */}
             <CustomModal

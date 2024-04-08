@@ -11,9 +11,9 @@ function Navbar() {
           </Link>
 
           <div>
-              <Link to="" className='pill-button' style={{ textDecoration: 'none'}}>
+              <a href="https://forms.central.edu.gh/dashboard" className='pill-button' style={{ textDecoration: 'none'}}>
                 Dashboard
-              </Link>
+              </a>
           </div>
           {/* <button
             className="navbar-toggler"

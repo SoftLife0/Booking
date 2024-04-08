@@ -11,7 +11,7 @@ function CustomCalendar({ onSelect, onNextClick }) {
     }, []);
 
     const fetchAvailableDates = () => {
-        fetch('https://forms.central.edu.gh/api/booking')
+        fetch('http://172.16.12.23:5000/api/booking')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Failed to fetch available dates');

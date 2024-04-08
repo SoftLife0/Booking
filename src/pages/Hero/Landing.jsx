@@ -7,7 +7,7 @@ const Landing = () => {
   const [minutes, setMinutes] = useState('');
   const [seconds, setSeconds] = useState('');
   const [period, setPeriod] = useState('');
-  const [remainingDays, setRemainingDays] = useState(40); // Initial countdown of 40 days
+  // const [remainingDays, setRemainingDays] = useState(40); 
   const history = useHistory();
 
   useEffect(() => {
@@ -56,13 +56,13 @@ const Landing = () => {
       <header id="header" className="d-flex align-items-center">
         <div className="container d-flex flex-column align-items-center" style={{ padding: '0 5px' }}>
           <h2 style={{ textAlign: 'center', fontWeight: 'bold' }}>Annual Medical Screening Program. Book your appointment now !</h2>
-          <h5><b>Screening Ends in {remainingDays} day(s) 👇</b></h5>
+          <h5><b>Screening Ends on day(s) 👇</b></h5>
 
           <div className="countdown d-flex justify-content-center">
-            <div className="countdown-item">
+            {/* <div className="countdown-item">
               <h3>{remainingDays}</h3>
               <h4>Days(s)</h4>
-            </div>
+            </div> */}
             <div className="countdown-item">
               <h3>{hours}</h3>
               <h4>Hours</h4>
